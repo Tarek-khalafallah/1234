@@ -1,0 +1,368 @@
+$(document).ready(function () {
+ 
+ var Alarm1 = sessionStorage.getItem('alarm1');
+ var Alarm2 = sessionStorage.getItem('alarm2');
+ var Alarm3 = sessionStorage.getItem('alarm3');
+
+
+
+  if (Alarm1 != null) {
+    if ($(".alarm1hide").hasClass("alarm1Active")) {
+      $("#message").html("");
+      $(".content-header-main").find(".maphide").attr("hidden", "hidden");
+      $(".alarm1hide").removeClass("alarm1Active");
+      $("#alarmstyle1").attr("style", "display:none");
+
+      sessionStorage.removeItem('alarm1');
+    
+
+      
+      $("#alarmstyle3").attr("style", "display:none");
+      $("#alarmstyle2").attr("style", "display:none");
+			
+      if ($(".alarm2hide").hasClass("alarm2Active")) {
+        $("#alarmstyle2").attr("style", "display:block");
+
+        $(".alarm2hide .alarms-tab").addClass("alarms-tab-active")
+        $(".alarm1hide .alarms-tab").removeClass("alarms-tab-active")
+        $(".alarm3hide .alarms-tab").removeClass("alarms-tab-active")
+				
+
+        sessionStorage.setItem('Alarm2', 'Alarm2');
+     
+       
+
+      }
+			else if ($(".alarm3hide").hasClass("alarm3Active")) {
+        $(".alarm2hide .alarms-tab").removeClass("alarms-tab-active")
+        $(".alarm3hide .alarms-tab").addClass("alarms-tab-active")
+        $(".alarm1hide .alarms-tab").removeClass("alarms-tab-active")
+				 
+
+        $("#alarmstyle3").attr("style", "display:block");
+        sessionStorage.setItem('alarm3', 'alarm3');     
+      }
+    } else {
+      $("#message").html("");
+      $("#imgLoading").show();
+      $("#message").html("Map is runing now...");
+      TimeoUT();
+     // $(".alarm1hide").appendTo(".content-header-main");
+      $(".alarm1hide").removeAttr("hidden");
+      $(".alarm1hide").addClass("alarm1Active");
+
+      $(".alarm2hide .alarms-tab").removeClass("alarms-tab-active")
+      $(".alarm3hide .alarms-tab").removeClass("alarms-tab-active")
+			
+      $(".alarm1hide .alarms-tab").addClass("alarms-tab-active")
+
+      $("#alarmstyle1").attr("style", "display:block");
+      $("#alarmstyle2").attr("style", "display:none");
+      $("#alarmstyle3").attr("style", "display:none");
+   
+
+      sessionStorage.setItem('alarm1', 'alarm1');
+
+    }
+  }
+
+
+
+  if (Alarm2!= null) {
+    if ($(".alarm2hide").hasClass("alarm2Active")) {
+      $("#message").html("");
+      $(".content-header-main").find(".maphide").attr("hidden", "hidden");
+      $(".alarm2hide").removeClass("alarm2Active");
+      $("#alarmstyle2").attr("style", "display:none");
+
+      sessionStorage.removeItem('alarm2');
+    
+
+      
+      $("#alarmstyle3").attr("style", "display:none");
+      $("#alarmstyle1").attr("style", "display:none");
+			
+      if ($(".alarm1hide").hasClass("Alarm1Active")) {
+        $("#alarmstyle1").attr("style", "display:block");
+
+        $(".alarm1hide .alarms-tab").addClass("alarms-tab-active")
+        $(".alarm2hide .alarms-tab").removeClass("alarms-tab-active")
+        $(".alarm3hide .alarms-tab").removeClass("alarms-tab-active")
+        sessionStorage.setItem('Alarm1', 'Alarm1');
+   
+      }
+			else if ($(".alarm3hide").hasClass("alarm3Active")) {
+        $(".alarm2hide .alarms-tab").removeClass("alarms-tab-active")
+        $(".alarm3hide .alarms-tab").addClass("alarms-tab-active")
+        $(".alarm1hide .alarms-tab").removeClass("alarms-tab-active")
+				 
+
+        $("#alarmstyle3").attr("style", "display:block");
+        sessionStorage.setItem('alarm3', 'alarm3');     
+      }
+    } else {
+      $("#message").html("");
+      $("#imgLoading").show();
+      $("#message").html("Map is runing now...");
+      TimeoUT();
+      //$(".alarm2hide").appendTo(".content-header-main");
+      $(".alarm2hide").removeAttr("hidden");
+      $(".alarm2hide").addClass("alarm2Active");
+
+      $(".alarm1hide .alarms-tab").removeClass("alarms-tab-active")
+      $(".alarm3hide .alarms-tab").removeClass("alarms-tab-active")
+			
+      $(".alarm2hide .alarms-tab").addClass("alarms-tab-active")
+
+      $("#alarmstyle2").attr("style", "display:block");
+      $("#alarmstyle1").attr("style", "display:none");
+      $("#alarmstyle3").attr("style", "display:none");
+  
+      sessionStorage.setItem('alarm2', 'alarm2');
+
+    }
+
+  }
+
+
+
+  if (Alarm3 != null) {
+  if ($(".alarm3hide").hasClass("alarm3Active")) {
+      $("#message").html("");
+      $(".content-header-main").find(".alarm3hide").attr("hidden", "hidden");
+      $(".alarm3hide").removeClass("alarm3Active");
+      $("#alarmstyle3").attr("style", "display:none");
+
+      sessionStorage.removeItem('alarm3');
+     
+      $("#alarmstyle2").attr("style", "display:none");
+      $("#alarmstyle1").attr("style", "display:none");
+		
+      if ($(".alarm1hide").hasClass("alarm1Active")) {
+        $("#alarmstyle1").attr("style", "display:block");
+
+        $(".alarm1hide .alarms-tab").addClass("alarms-tab-active")
+        $(".alarm3hide .alarms-tab").removeClass("alarms-tab-active")
+        $(".alarm2hide .alarms-tab").removeClass("alarms-tab-active")
+				
+        sessionStorage.setItem('Alarm3', 'Alarm3');
+
+      } 
+		
+			else if ($(".alarm2hide").hasClass("alarm2ctive")) {
+        $(".alarm3hide .alarms-tab").removeClass("alarms-tab-active")
+        $(".alarm2hide .alarms-tab").addClass("alarms-tab-active")
+        $(".alarm1hide .alarms-tab").removeClass("alarms-tab-active")
+				 
+
+        $("#alarmstyle2").attr("style", "display:block");
+        sessionStorage.setItem('alarm2', 'alarm2');     
+      }
+    } 
+		
+		else {
+      $("#message").html("");
+      $("#imgLoading").show();
+      $("#message").html("Map is runing now...");
+      TimeoUT();
+      //$(".alarm3hide").appendTo(".content-header-main");
+      $(".alarm3hide").removeAttr("hidden");
+      $(".alarm3hide").addClass("alarm3Active");
+
+      $(".alarm1hide .alarms-tab").removeClass("alarms-tab-active")
+      $(".alarm2hide .alarms-tab").removeClass("alarms-tab-active")
+			 $(".alarm3hide .alarms-tab").addClass("alarms-tab-active")
+			
+      $("#alarmstyle3").attr("style", "display:block");
+      $("#alarmstyle1").attr("style", "display:none");
+      $("#alarmstyle2").attr("style", "display:none");
+   
+
+      sessionStorage.setItem('alarm3', 'alarm3');
+
+    }
+
+
+
+  }
+
+
+});
+
+
+
+function alarm1() {
+
+      $("#message").html("");
+      $("#imgLoading").show();
+      $("#message").html("Map is runing now...");
+      TimeoUT();
+      //$(".alarm1hide").appendTo(".content-header-main");
+      $(".alarm1hide").removeAttr("hidden");
+      $(".alarm1hide").addClass("alarm1Active");
+
+      $(".alarm2hide .alarms-tab").removeClass("alarms-tab-active")
+      $(".alarm3hide .alarms-tab").removeClass("alarms-tab-active")
+			
+      $(".alarm1hide .alarms-tab").addClass("alarms-tab-active")
+
+      $("#alarmstyle1").attr("style", "display:block");
+      $("#alarmstyle2").attr("style", "display:none");
+      $("#alarmstyle3").attr("style", "display:none");
+ 			$("#armed-assault").addClass("active"); 
+      sessionStorage.setItem('alarm1', 'alarm1');
+
+    
+}
+
+function alarm2() {
+
+      $("#message").html("");
+      $("#imgLoading").show();
+      $("#message").html("Map is runing now...");
+      TimeoUT();
+      //$(".alarm2hide").appendTo(".content-header-main");
+      $(".alarm2hide").removeAttr("hidden");
+      $(".alarm2hide").addClass("alarm2Active");
+
+      $(".alarm1hide .alarms-tab").removeClass("alarms-tab-active")
+      $(".alarm3hide .alarms-tab").removeClass("alarms-tab-active")
+			
+      $(".alarm2hide .alarms-tab").addClass("alarms-tab-active")
+
+      $("#alarmstyle2").attr("style", "display:block");
+      $("#alarmstyle1").attr("style", "display:none");
+      $("#alarmstyle3").attr("style", "display:none");
+   		$("#black-listed-person").addClass("active"); 
+      sessionStorage.setItem('alarm2', 'alarm2');
+
+}
+
+
+function alarm3() {
+
+      $("#message").html("");
+      $("#imgLoading").show();
+      $("#message").html("Map is runing now...");
+      TimeoUT();
+     // $(".alarm3hide").appendTo(".content-header-main");
+      $(".alarm3hide").removeAttr("hidden");
+      $(".alarm3hide").addClass("alarm3Active");
+
+      $(".alarm1hide .alarms-tab").removeClass("alarms-tab-active")
+      $(".alarm2hide .alarms-tab").removeClass("alarms-tab-active")
+			
+      $(".alarm3hide .alarms-tab").addClass("alarms-tab-active")
+
+      $("#alarmstyle3").attr("style", "display:block");
+      $("#alarmstyle1").attr("style", "display:none");
+      $("#alarmstyle2").attr("style", "display:none");
+			$("#rack-refill").addClass("active"); 
+      sessionStorage.setItem('alarm3', 'alarm3');
+
+}
+
+
+$("#alarm1CloseTabe").click(function () {
+
+      $("#message").html("");
+      $(".content-header-main").find(".alarm1hide").attr("hidden", "hidden");
+      $(".alarm1hide").removeClass("alarm1Active");
+      $("#alarmstyle1").attr("style", "display:none");
+      sessionStorage.removeItem('alarm1');
+    
+      $("#alarmstyle3").attr("style", "display:none");
+      $("#alarmstyle2").attr("style", "display:none");
+		
+      if ($(".alarm2hide").hasClass("alarm2Active")) {
+        $("#alarmstyle2").attr("style", "display:block");
+
+        $(".alarm2hide .alarms-tab").addClass("alarms-tab-active")
+        $(".alarm1hide .alarms-tab").removeClass("alarms-tab-active")
+        $(".alarm3hide .alarms-tab").removeClass("alarms-tab-active")	
+        sessionStorage.setItem('Alarm2', 'Alarm2');
+      } 
+			else if ($(".alarm3hide").hasClass("alarm3Active")) {
+        $(".alarm2hide .alarms-tab").removeClass("alarms-tab-active")
+        $(".alarm3hide .alarms-tab").addClass("alarms-tab-active")
+        $(".alarm1hide .alarms-tab").removeClass("alarms-tab-active")				
+        $("#alarmstyle3").attr("style", "display:block");
+        sessionStorage.setItem('alarm3', 'alarm3');     
+      }
+		$("#armed-assault").removeClass("active"); 
+});
+
+$("#alarm2CloseTabe").click(function () {
+	  $("#message").html("");
+      $(".content-header-main").find(".alarm2hide").attr("hidden", "hidden");
+      $(".alarm2hide").removeClass("alarm2Active");
+      $("#alarmstyle2").attr("style", "display:none");
+
+      sessionStorage.removeItem('alarm2');
+    
+
+      
+      $("#alarmstyle3").attr("style", "display:none");
+      $("#alarmstyle1").attr("style", "display:none");
+		
+      if ($(".alarm1hide").hasClass("alarm1Active")) {
+        $("#alarmstyle1").attr("style", "display:block");
+
+        $(".alarm1hide .alarms-tab").addClass("alarms-tab-active")
+        $(".alarm2hide .alarms-tab").removeClass("alarms-tab-active")
+        $(".alarm3hide .alarms-tab").removeClass("alarms-tab-active")
+				
+        sessionStorage.setItem('Alarm2', 'Alarm2');
+      } 
+			else if ($(".alarm3hide").hasClass("alarm3Active")) {
+        $(".alarm2hide .alarms-tab").removeClass("alarms-tab-active")
+        $(".alarm3hide .alarms-tab").addClass("alarms-tab-active")
+        $(".alarm1hide .alarms-tab").removeClass("alarms-tab-active")
+				 
+        $("#alarmstyle3").attr("style", "display:block");
+        sessionStorage.setItem('alarm3', 'alarm3');     
+      }
+	$("#black-listed-person").removeClass("active"); 
+});
+
+$("#alarm3CloseTabe").click(function () {
+  $("#message").html("");    
+	  $(".content-header-main").find(".alarm3hide").attr("hidden", "hidden");
+      $(".alarm3hide").removeClass("alarm3Active");
+      $("#alarmstyle3").attr("style", "display:none");
+
+      sessionStorage.removeItem('alarm3');
+         
+      $("#alarmstyle2").attr("style", "display:none");
+      $("#alarmstyle1").attr("style", "display:none");
+	 
+      if ($(".alarm1hide").hasClass("alarm1Active")) {
+        $("#alarmstyle1").attr("style", "display:block");
+
+        $(".alarm1hide .alarms-tab").addClass("alarms-tab-active")
+        $(".alarm3hide .alarms-tab").removeClass("alarms-tab-active")
+        $(".alarm2hide .alarms-tab").removeClass("alarms-tab-active")
+        sessionStorage.setItem('Alarm3', 'Alarm3');
+
+      } 
+			else if ($(".alarm2hide").hasClass("alarm2ctive")) {
+        $(".alarm3hide .alarms-tab").removeClass("alarms-tab-active")
+        $(".alarm2hide .alarms-tab").addClass("alarms-tab-active")
+        $(".alarm1hide .alarms-tab").removeClass("alarms-tab-active")
+				 
+        $("#alarmstyle2").attr("style", "display:block");
+        sessionStorage.setItem('alarm2', 'alarm2');     
+      }
+		$("#rack-refill").removeClass("active"); 
+});
+
+
+
+
+
+
+
+
+
+
+

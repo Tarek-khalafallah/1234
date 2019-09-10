@@ -1,0 +1,1213 @@
+$(document).ready(function () {
+  var Alarms = sessionStorage.getItem('Alarms');
+  var Dashboards = sessionStorage.getItem('Dashboards');
+  var map = sessionStorage.getItem('map');
+	var FR = sessionStorage.getItem('FR');
+	var Rack = sessionStorage.getItem('rack');
+
+  var AlarmsHome = sessionStorage.getItem('AlarmsHome');
+  var DashboardsHome = sessionStorage.getItem('DashboardsHome');
+  var mapHome = sessionStorage.getItem('mapHome');
+	var FRHome = sessionStorage.getItem('FRHome');
+	var RackHome = sessionStorage.getItem('rackHome');
+
+  if (map != null) {
+    if ($(".maphide").hasClass("mapActive")) {
+      $("#message").html("");
+      $("#main-header").find(".maphide").attr("hidden", "hidden");
+      $(".maphide").removeClass("mapActive");
+      $("#style1").attr("style", "display:none");
+
+      sessionStorage.removeItem('map');
+      sessionStorage.removeItem('mapHome');
+
+      $("#style4").attr("style", "display:none");
+      $("#style3").attr("style", "display:none");
+      $("#style2").attr("style", "display:none");
+			$("#style5").attr("style", "display:none");
+      if ($(".Alarmshide").hasClass("AlarmsActive")) {
+        $("#style2").attr("style", "display:block");
+
+        $(".Alarmshide .module-tab").addClass("module-tab-act");
+        $(".Dashboardshide .module-tab").removeClass("module-tab-act");
+        $(".maphide .module-tab").removeClass("module-tab-act");
+				 $(".FRhide .module-tab").removeClass("module-tab-act");
+				 $(".rackhide .module-tab").removeClass("module-tab-act");
+
+
+        sessionStorage.setItem('Alarms', 'Alarms');
+        sessionStorage.setItem('AlarmsHome', 'AlarmsHome');
+        $(".pref-alarm").addClass("active");
+
+      } else if ($(".Dashboardshide").hasClass("DashboardsActive")) {
+        $(".Alarmshide .module-tab").removeClass("module-tab-act");
+        $(".Dashboardshide .module-tab").addClass("module-tab-act");
+        $(".maphide .module-tab").removeClass("module-tab-act");
+				 $(".FRhide .module-tab").removeClass("module-tab-act");
+				 $(".rackhide .module-tab").removeClass("module-tab-act");
+
+        $("#style3").attr("style", "display:block");
+        sessionStorage.setItem('Dashboards', 'Dashboards');
+        sessionStorage.setItem('DashboardsHome', 'DashboardsHome');
+        $(".pref-db").addClass("active");
+
+      }
+			else if ($(".FRhide").hasClass("FRActive")) {
+        $(".Alarmshide .module-tab").removeClass("module-tab-act")
+        $(".FRhide .module-tab").addClass("module-tab-act")
+        $(".maphide .module-tab").removeClass("module-tab-act")
+				 $(".Dashboardshide .module-tab").removeClass("module-tab-act")
+				 $(".rackhide .module-tab").removeClass("module-tab-act");
+
+        $("#style4").attr("style", "display:block");
+        sessionStorage.setItem('FR', 'FR');
+        sessionStorage.setItem('FRHome', 'FRHome');
+        $(".pref-fr").addClass("active");
+
+      }
+			else if ($(".rackhide").hasClass("rackActive")) {
+      $(".Alarmshide .module-tab").removeClass("module-tab-act")
+      $(".Dashboardshide .module-tab").removeClass("module-tab-act")
+			 $(".FRhide .module-tab").removeClass("module-tab-act")
+      $(".rackhide .module-tab").addClass("module-tab-act")
+			$(".maphide .module-tab").removeClass("module-tab-act")
+		$(".pref-rack").addClass("active");
+
+      $("#style5").attr("style", "display:block");
+      sessionStorage.setItem('rack', 'rack');
+      sessionStorage.setItem('rackHome', 'rackHome');
+    }
+    } else {
+      $("#message").html("");
+      $("#imgLoading").show();
+      $("#message").html("Map is runing now...");
+      TimeoUT();
+      $(".maphide").appendTo("#main-header");
+      $(".maphide").removeAttr("hidden");
+      $(".maphide").addClass("mapActive");
+
+      $(".Alarmshide .module-tab").removeClass("module-tab-act")
+      $(".Dashboardshide .module-tab").removeClass("module-tab-act")
+			  $(".FRshide .module-tab").removeClass("module-tab-act")
+      $(".maphide .module-tab").addClass("module-tab-act")
+			 $(".rackhide .module-tab").removeClass("module-tab-act");
+
+      $("#style1").attr("style", "display:block");
+      $("#style3").attr("style", "display:none");
+      $("#style2").attr("style", "display:none");
+      $("#style4").attr("style", "display:none");
+			 $("#style5").attr("style", "display:none");
+
+      sessionStorage.setItem('map', 'map');
+      sessionStorage.setItem('mapHome', 'mapHome');
+      $(".pref-maps").addClass("active");
+    }
+  }
+
+
+
+  if (Alarms != null) {
+    if ($(".Alarmshide").hasClass("AlarmsActive")) {
+      $("#message").html("");
+      $("#main-header").find(".Alarmshide").attr("hidden", "hidden");
+      $(".Alarmshide").removeClass("AlarmsActive");
+      sessionStorage.removeItem('Alarms');
+      sessionStorage.removeItem('AlarmsHome');
+
+      $("#style2").attr("style", "display:none");
+      $("#style3").attr("style", "display:none");
+      $("#style1").attr("style", "display:none");
+      $("#style4").attr("style", "display:none");
+			$("#style5").attr("style", "display:none");
+
+      if ($(".maphide").hasClass("mapActive")) {
+        $(".Alarmshide .module-tab").removeClass("module-tab-act")
+        $(".Dashboardshide .module-tab").removeClass("module-tab-act")
+				 $(".FRhide .module-tab").removeClass("module-tab-act")
+        $(".maphide .module-tab").addClass("module-tab-act")
+					$(".rackhide .module-tab").removeClass("module-tab-act")
+				
+
+        $("#style1").attr("style", "display:block");
+        sessionStorage.setItem('map', 'map');
+        sessionStorage.setItem('mapHome', 'mapHome');
+        $(".pref-maps").addClass("active");
+      } else if ($(".Dashboardshide").hasClass("DashboardsActive")) {
+        $(".Alarmshide .module-tab").removeClass("module-tab-act")
+        $(".Dashboardshide .module-tab").addClass("module-tab-act")
+        $(".maphide .module-tab").removeClass("module-tab-act")
+				 $(".FRhide .module-tab").removeClass("module-tab-act")
+					$(".rackhide .module-tab").removeClass("module-tab-act")
+
+        $("#style3").attr("style", "display:block");
+        sessionStorage.setItem('Dashboards', 'Dashboards');
+        sessionStorage.setItem('DashboardsHome', 'DashboardsHome');
+        $(".pref-db").addClass("active");
+      }
+			else if ($(".FRhide").hasClass("FRActive")) {
+        $(".Alarmshide .module-tab").removeClass("module-tab-act")
+        $(".FRhide .module-tab").addClass("module-tab-act")
+        $(".maphide .module-tab").removeClass("module-tab-act")
+				$(".Dashboardshide .module-tab").removeClass("module-tab-act")
+					$(".rackhide .module-tab").removeClass("module-tab-act")
+
+        $("#style4").attr("style", "display:block");
+        sessionStorage.setItem('FR', 'FR');
+        sessionStorage.setItem('FRHome', 'FRHome');
+        $(".pref-fr").addClass("active");
+      }
+			else if ($(".rackhide").hasClass("rackActive")) {
+      $(".Alarmshide .module-tab").removeClass("module-tab-act")
+      $(".Dashboardshide .module-tab").removeClass("module-tab-act")
+			 $(".FRhide .module-tab").removeClass("module-tab-act")
+      $(".rackhide .module-tab").addClass("module-tab-act")
+			$(".maphide .module-tab").removeClass("module-tab-act")
+	$(".pref-rack").addClass("active");
+      $("#style5").attr("style", "display:block");
+      sessionStorage.setItem('rack', 'rack');
+      sessionStorage.setItem('rackHome', 'rackHome');
+    }
+    } else {
+      $("#message").html("");
+      $("#imgLoading").show();
+      $("#message").html("Alarms is runing now...");
+      TimeoUT();
+      $(".Alarmshide").appendTo("#main-header");
+      $(".Alarmshide").removeAttr("hidden");
+      $(".Alarmshide").addClass("AlarmsActive");
+
+      $(".Alarmshide .module-tab").addClass("module-tab-act")
+      $(".Dashboardshide .module-tab").removeClass("module-tab-act")
+      $(".maphide .module-tab").removeClass("module-tab-act")
+			 $(".FRhide .module-tab").removeClass("module-tab-act")
+				$(".rackhide .module-tab").removeClass("module-tab-act")
+
+      $("#style2").attr("style", "display:block");
+      $("#style3").attr("style", "display:none");
+      $("#style1").attr("style", "display:none");
+      $("#style4").attr("style", "display:none");
+			$("#style5").attr("style", "display:none");
+
+      sessionStorage.setItem('Alarms', 'Alarms');
+      sessionStorage.setItem('AlarmsHome', 'AlarmsHome');
+      $(".pref-alarm").addClass("active");
+    }
+
+  }
+
+
+
+  if (Dashboards != null) {
+
+    if ($(".Dashboardshide").hasClass("DashboardsActive")) {
+      $("#message").html("");
+      $("#main-header").find(".Dashboardshide").attr("hidden", "hidden");
+      $(".Dashboardshide").removeClass("DashboardsActive");
+
+      sessionStorage.removeItem('Dashboards');
+      sessionStorage.removeItem('DashboardsHome');
+      $("#style3").attr("style", "display:none");
+      $("#style2").attr("style", "display:none");
+      $("#style1").attr("style", "display:none");
+      $("#style4").attr("style", "display:none");
+				$("#style5").attr("style", "display:none");
+
+      if ($(".Alarmshide").hasClass("AlarmsActive")) {
+        $(".Alarmshide .module-tab").addClass("module-tab-act")
+        $(".Dashboardshide .module-tab").removeClass("module-tab-act")
+        $(".maphide .module-tab").removeClass("module-tab-act")
+				 $(".FRhide .module-tab").removeClass("module-tab-act")
+					$(".rackhide .module-tab").removeClass("module-tab-act")
+
+        $("#style2").attr("style", "display:block");
+
+        sessionStorage.setItem('Alarms', 'Alarms');
+        sessionStorage.setItem('AlarmsHome', 'AlarmsHome');
+        $(".pref-alarm").addClass("active");
+      } else if ($(".maphide").hasClass("mapActive")) {
+        $(".Alarmshide .module-tab").removeClass("module-tab-act")
+        $(".Dashboardshide .module-tab").removeClass("module-tab-act")
+        $(".maphide .module-tab").addClass("module-tab-act")
+				 $(".FRhide .module-tab").removeClass("module-tab-act")
+					$(".rackhide .module-tab").removeClass("module-tab-act")
+
+        $("#style1").attr("style", "display:block");
+
+        sessionStorage.setItem('map', 'map');
+        sessionStorage.setItem('mapHome', 'mapHome');
+        $(".pref-maps").addClass("active");
+      }
+			
+			
+			else if ($(".FRhide").hasClass("FRActive")) {
+        $(".Alarmshide .module-tab").removeClass("module-tab-act")
+        $(".Dashboardshide .module-tab").removeClass("module-tab-act")
+        $(".maphide .module-tab").removeClass("module-tab-act")
+				 $(".FRhide .module-tab").addClass("module-tab-act")
+					$(".rackhide .module-tab").removeClass("module-tab-act")
+
+        $("#style4").attr("style", "display:block");
+
+        sessionStorage.setItem('FR', 'FR');
+        sessionStorage.setItem('FRHome', 'FRHome');
+        $(".pref-fr").addClass("active");
+      }
+			else if ($(".rackhide").hasClass("rackActive")) {
+      $(".Alarmshide .module-tab").removeClass("module-tab-act")
+      $(".Dashboardshide .module-tab").removeClass("module-tab-act")
+			 $(".FRhide .module-tab").removeClass("module-tab-act")
+      $(".rackhide .module-tab").addClass("module-tab-act")
+			$(".maphide .module-tab").removeClass("module-tab-act")
+	$(".pref-rack").addClass("active");
+      $("#style5").attr("style", "display:block");
+      sessionStorage.setItem('rack', 'rack');
+      sessionStorage.setItem('rackHome', 'rackHome');
+    }
+    } else {
+      $("#message").html("");
+      $("#imgLoading").show();
+      $("#message").html("Dashboards is runing now...");
+      TimeoUT();
+      $(".Dashboardshide").appendTo("#main-header");
+      $(".Dashboardshide").removeAttr("hidden");
+      $(".Dashboardshide").addClass("DashboardsActive");
+			
+
+      $(".Alarmshide .module-tab").removeClass("module-tab-act")
+      $(".Dashboardshide .module-tab").addClass("module-tab-act")
+      $(".maphide .module-tab").removeClass("module-tab-act")
+			 $(".FRhide .module-tab").removeClass("module-tab-act")
+				$(".rackhide .module-tab").removeClass("module-tab-act")
+
+      $("#style3").attr("style", "display:block");
+      $("#style1").attr("style", "display:none");
+      $("#style2").attr("style", "display:none");
+      $("#style4").attr("style", "display:none");
+			$("#style5").attr("style", "display:none");
+
+      sessionStorage.setItem('Dashboards', 'Dashboards');
+      sessionStorage.setItem('DashboardsHome', 'DashboardsHome');
+      $(".pref-db").addClass("active");
+
+    }
+  }
+
+
+	
+	
+  if (FR != null) {
+    if ($(".FRhide").hasClass("FRActive")) {
+      $("#message").html("");
+      $("#main-header").find(".FRhide").attr("hidden", "hidden");
+      $(".FRhide").removeClass("FRActive");
+      $("#style4").attr("style", "display:none");
+
+      sessionStorage.removeItem('FR');
+      sessionStorage.removeItem('FRHome');
+
+      $("#style3").attr("style", "display:none");
+      $("#style2").attr("style", "display:none");
+      $("#style4").attr("style", "display:none");
+			$("#style1").attr("style", "display:none");		
+			$("#style5").attr("style", "display:none");
+
+      if ($(".Alarmshide").hasClass("AlarmsActive")) {
+        $("#style2").attr("style", "display:block");
+
+        $(".Alarmshide .module-tab").addClass("module-tab-act")
+        $(".Dashboardshide .module-tab").removeClass("module-tab-act")
+        $(".FRhide .module-tab").removeClass("module-tab-act")
+				 $(".maphide .module-tab").removeClass("module-tab-act")
+						$(".rackhide .module-tab").removeClass("module-tab-act")
+
+        sessionStorage.setItem('Alarms', 'Alarms');
+        sessionStorage.setItem('AlarmsHome', 'AlarmsHome');
+        $(".pref-alarm").addClass("active");
+
+      } else if ($(".Dashboardshide").hasClass("DashboardsActive")) {
+        $(".Alarmshide .module-tab").removeClass("module-tab-act")
+        $(".Dashboardshide .module-tab").addClass("module-tab-act")
+        $(".FRhide .module-tab").removeClass("module-tab-act")
+				 $(".maphide .module-tab").removeClass("module-tab-act")
+						$(".rackhide .module-tab").removeClass("module-tab-act")
+
+        $("#style3").attr("style", "display:block");
+        sessionStorage.setItem('Dashboards', 'Dashboards');
+        sessionStorage.setItem('DashboardsHome', 'DashboardsHome');
+        $(".pref-db").addClass("active");
+
+      }
+			 else if ($(".maphide").hasClass("mapActive")) {
+        $(".Alarmshide .module-tab").removeClass("module-tab-act")
+        $(".Dashboardshide .module-tab").removeClass("module-tab-act")
+        $(".maphide .module-tab").addClass("module-tab-act")
+				 $(".FRhide .module-tab").removeClass("module-tab-act")
+				 		$(".rackhide .module-tab").removeClass("module-tab-act")
+
+        $("#style1").attr("style", "display:block");
+
+        sessionStorage.setItem('map', 'map');
+        sessionStorage.setItem('mapHome', 'mapHome');
+        $(".pref-maps").addClass("active");
+      }
+			else if ($(".rackhide").hasClass("rackActive")) {
+      $(".Alarmshide .module-tab").removeClass("module-tab-act")
+      $(".Dashboardshide .module-tab").removeClass("module-tab-act")
+			 $(".FRhide .module-tab").removeClass("module-tab-act")
+      $(".rackhide .module-tab").addClass("module-tab-act")
+			$(".maphide .module-tab").removeClass("module-tab-act")
+
+      $("#style5").attr("style", "display:block");
+      sessionStorage.setItem('rack', 'rack');
+      sessionStorage.setItem('rackHome', 'rackHome');
+    }
+			
+    } else {
+      $("#message").html("");
+      $("#imgLoading").show();
+      $("#message").html("FR is runing now...");
+      TimeoUT();
+      $(".FRhide").appendTo("#main-header");
+      $(".FRhide").removeAttr("hidden");
+      $(".FRhide").addClass("FRActive");
+
+      $(".Alarmshide .module-tab").removeClass("module-tab-act")
+      $(".Dashboardshide .module-tab").removeClass("module-tab-act")
+			  $(".mapshide .module-tab").removeClass("module-tab-act")
+      $(".FRhide .module-tab").addClass("module-tab-act")
+					$(".rackhide .module-tab").removeClass("module-tab-act")
+
+      $("#style5").attr("style", "display:block");
+      $("#style4").attr("style", "display:block");
+      $("#style3").attr("style", "display:none");
+      $("#style2").attr("style", "display:none");
+			$("#style1").attr("style", "display:none");
+
+      sessionStorage.setItem('FR', 'FR');
+      sessionStorage.setItem('FRHome', 'FRHome');
+      $(".pref-fr").addClass("active");
+    }
+  }
+	
+	if(Rack!=null)
+	{
+		if ($(".rackhide").hasClass("rackActive")) {
+			
+    $("#message").html("");
+    $("#main-header").find(".rackhide").attr("hidden", "hidden");
+    $(".rackhide").removeClass("rackActive");
+    $("#style5").attr("style", "display:none");
+
+    sessionStorage.removeItem('rack');
+    sessionStorage.removeItem('rackHome');
+
+    $("#style3").attr("style", "display:none");
+    $("#style2").attr("style", "display:none");
+		$("#style1").attr("style", "display:none");
+		$("#style4").attr("style", "display:none");
+		$("#style5").attr("style", "display:none");
+    if($(".Alarmshide").hasClass("AlarmsActive")) {
+      $("#style2").attr("style", "display:block");
+
+      $(".Alarmshide .module-tab").addClass("module-tab-act")
+      $(".Dashboardshide .module-tab").removeClass("module-tab-act")
+      $(".rackhide .module-tab").removeClass("module-tab-act")
+			$(".maphide .module-tab").removeClass("module-tab-act")
+			 $(".FRhide .module-tab").removeClass("module-tab-act")
+
+      sessionStorage.setItem('Alarms', 'Alarms');
+      sessionStorage.setItem('AlarmsHome', 'AlarmsHome');
+
+    } else if ($(".Dashboardshide").hasClass("DashboardsActive")) {
+      $(".Alarmshide .module-tab").removeClass("module-tab-act")
+      $(".Dashboardshide .module-tab").addClass("module-tab-act")
+      $(".rackhide .module-tab").removeClass("module-tab-act")
+			 $(".maphide .module-tab").removeClass("module-tab-act")
+			 $(".FRhide .module-tab").removeClass("module-tab-act")
+
+      $("#style3").attr("style", "display:block");
+      sessionStorage.setItem('Dashboards', 'Dashboards');
+      sessionStorage.setItem('DashboardsHome', 'DashboardsHome');
+
+    }
+				 else if ($(".maphide").hasClass("mapActive")) {
+      $(".Alarmshide .module-tab").removeClass("module-tab-act")
+      $(".Dashboardshide .module-tab").removeClass("module-tab-act")
+			 $(".rackhide .module-tab").removeClass("module-tab-act")
+      $(".maphide .module-tab").addClass("module-tab-act")
+			$(".FRhide .module-tab").removeClass("module-tab-act")
+
+      $("#style1").attr("style", "display:block");
+      sessionStorage.setItem('map', 'map');
+      sessionStorage.setItem('mapHome', 'mapHome');
+    }
+		
+		else if ($(".FRhide").hasClass("FRActive")) {
+      $(".Alarmshide .module-tab").removeClass("module-tab-act")
+      $(".FRhide .module-tab").addClass("module-tab-act")
+      $(".maphide .module-tab").removeClass("module-tab-act")
+			 $(".Dashboardshide .module-tab").removeClass("module-tab-act")
+			 $(".rackhide .module-tab").removeClass("module-tab-act")
+
+      $("#style4").attr("style", "display:block");
+      sessionStorage.setItem('FR', 'FR');
+      sessionStorage.setItem('FRHome', 'FRHome');
+
+    }
+
+		
+  } else {
+    $("#message").html("");
+    $("#imgLoading").show();
+    $("#message").html("rack is runing now...");
+    TimeoUT();
+    $(".rackhide").appendTo("#main-header");
+    $(".rackhide").removeAttr("hidden");
+    $(".rackhide").addClass("rackActive");
+
+    $(".Alarmshide .module-tab").removeClass("module-tab-act")
+    $(".Dashboardshide .module-tab").removeClass("module-tab-act")
+		$(".maphide .module-tab").removeClass("module-tab-act")
+    $(".rackhide .module-tab").addClass("module-tab-act")
+	
+ 		$("#style5").attr("style", "display:block");
+    $("#style4").attr("style", "display:none");
+    $("#style3").attr("style", "display:none");
+    $("#style2").attr("style", "display:none");
+		$("#style1").attr("style", "display:none");
+	$(".pref-rack").addClass("active");
+    sessionStorage.setItem('rack', 'rack');
+    sessionStorage.setItem('rackHome', 'rackHome');
+  }
+	}
+
+});
+
+
+
+
+
+function FR() {
+  if ($(".FRhide").hasClass("FRActive")) {
+    $("#message").html("");
+    $("#main-header").find(".FRhide").attr("hidden", "hidden");
+    $(".FRhide").removeClass("FRActive");
+    $("#style4").attr("style", "display:none");
+
+    sessionStorage.removeItem('FR');
+    sessionStorage.removeItem('FRHome');
+
+    $("#style3").attr("style", "display:none");
+    $("#style2").attr("style", "display:none");
+		$("#style1").attr("style", "display:none");
+		$("#style4").attr("style", "display:none");
+		$("#style5").attr("style", "display:none");
+		
+    if ($(".Alarmshide").hasClass("AlarmsActive")) {
+      $("#style2").attr("style", "display:block");
+
+      $(".Alarmshide .module-tab").addClass("module-tab-act")
+      $(".Dashboardshide .module-tab").removeClass("module-tab-act")
+      $(".FRhide .module-tab").removeClass("module-tab-act")
+			$(".maphide .module-tab").removeClass("module-tab-act")
+			$(".rackhide .module-tab").removeClass("module-tab-act")
+			
+      sessionStorage.setItem('Alarms', 'Alarms');
+      sessionStorage.setItem('AlarmsHome', 'AlarmsHome');
+
+    } else if ($(".Dashboardshide").hasClass("DashboardsActive")) {
+      $(".Alarmshide .module-tab").removeClass("module-tab-act")
+      $(".Dashboardshide .module-tab").addClass("module-tab-act")
+      $(".FRhide .module-tab").removeClass("module-tab-act")
+			 $(".maphide .module-tab").removeClass("module-tab-act")
+			$(".rackhide .module-tab").removeClass("module-tab-act")
+
+      $("#style3").attr("style", "display:block");
+      sessionStorage.setItem('Dashboards', 'Dashboards');
+      sessionStorage.setItem('DashboardsHome', 'DashboardsHome');
+
+    }
+				 else if ($(".maphide").hasClass("mapActive")) {
+      $(".Alarmshide .module-tab").removeClass("module-tab-act")
+      $(".Dashboardshide .module-tab").removeClass("module-tab-act")
+			 $(".FRhide .module-tab").removeClass("module-tab-act")
+      $(".maphide .module-tab").addClass("module-tab-act")
+			$(".rackhide .module-tab").removeClass("module-tab-act")
+
+      $("#style1").attr("style", "display:block");
+      sessionStorage.setItem('map', 'map');
+      sessionStorage.setItem('mapHome', 'mapHome');
+    }
+		
+			else if ($(".rackhide").hasClass("rackActive")) {
+      $(".Alarmshide .module-tab").removeClass("module-tab-act")
+      $(".Dashboardshide .module-tab").removeClass("module-tab-act")
+			 $(".FRhide .module-tab").removeClass("module-tab-act")
+      $(".rackhide .module-tab").addClass("module-tab-act")
+			$(".maphide .module-tab").removeClass("module-tab-act")
+
+      $("#style5").attr("style", "display:block");
+      sessionStorage.setItem('rack', 'rack');
+      sessionStorage.setItem('rackHome', 'rackHome');
+    }
+		
+  } else {
+    $("#message").html("");
+    $("#imgLoading").show();
+    $("#message").html("FR is runing now...");
+    TimeoUT();
+    $(".FRhide").appendTo("#main-header");
+    $(".FRhide").removeAttr("hidden");
+    $(".FRhide").addClass("FRActive");
+
+    $(".Alarmshide .module-tab").removeClass("module-tab-act")
+    $(".Dashboardshide .module-tab").removeClass("module-tab-act")
+		$(".maphide .module-tab").removeClass("module-tab-act")
+    $(".FRhide .module-tab").addClass("module-tab-act")
+	
+
+    $("#style4").attr("style", "display:block");
+    $("#style3").attr("style", "display:none");
+    $("#style2").attr("style", "display:none");
+		$("#style1").attr("style", "display:none");
+		$("#style5").attr("style", "display:none");
+
+    sessionStorage.setItem('FR', 'FR');
+    sessionStorage.setItem('FRHome', 'FRHome');
+  }
+}
+
+
+function Rack() {
+  if ($(".rackhide").hasClass("rackActive")) {
+		
+    $("#message").html("");
+    $("#main-header").find(".rackhide").attr("hidden", "hidden");
+    $(".rackhide").removeClass("rackActive");
+    $("#style5").attr("style", "display:none");
+
+    sessionStorage.removeItem('rack');
+    sessionStorage.removeItem('rackHome');
+
+    $("#style3").attr("style", "display:none");
+    $("#style2").attr("style", "display:none");
+		$("#style1").attr("style", "display:none");
+		$("#style4").attr("style", "display:none");
+		$("#style5").attr("style", "display:none");
+    if ($(".Alarmshide").hasClass("AlarmsActive")) {
+      $("#style2").attr("style", "display:block");
+
+      $(".Alarmshide .module-tab").addClass("module-tab-act")
+      $(".Dashboardshide .module-tab").removeClass("module-tab-act")
+      $(".rackhide .module-tab").removeClass("module-tab-act")
+			$(".maphide .module-tab").removeClass("module-tab-act")
+			 $(".FRhide .module-tab").removeClass("module-tab-act")
+
+      sessionStorage.setItem('Alarms', 'Alarms');
+      sessionStorage.setItem('AlarmsHome', 'AlarmsHome');
+
+    } else if ($(".Dashboardshide").hasClass("DashboardsActive")) {
+      $(".Alarmshide .module-tab").removeClass("module-tab-act")
+      $(".Dashboardshide .module-tab").addClass("module-tab-act")
+      $(".rackhide .module-tab").removeClass("module-tab-act")
+			 $(".maphide .module-tab").removeClass("module-tab-act")
+			 $(".FRhide .module-tab").removeClass("module-tab-act")
+
+      $("#style3").attr("style", "display:block");
+      sessionStorage.setItem('Dashboards', 'Dashboards');
+      sessionStorage.setItem('DashboardsHome', 'DashboardsHome');
+
+    }
+				 else if ($(".maphide").hasClass("mapActive")) {
+      $(".Alarmshide .module-tab").removeClass("module-tab-act")
+      $(".Dashboardshide .module-tab").removeClass("module-tab-act")
+			 $(".rackhide .module-tab").removeClass("module-tab-act")
+      $(".maphide .module-tab").addClass("module-tab-act")
+			$(".FRhide .module-tab").removeClass("module-tab-act")
+
+      $("#style1").attr("style", "display:block");
+      sessionStorage.setItem('map', 'map');
+      sessionStorage.setItem('mapHome', 'mapHome');
+    }
+		
+		else if ($(".FRhide").hasClass("FRActive")) {
+      $(".Alarmshide .module-tab").removeClass("module-tab-act")
+      $(".FRhide .module-tab").addClass("module-tab-act")
+      $(".maphide .module-tab").removeClass("module-tab-act")
+			 $(".Dashboardshide .module-tab").removeClass("module-tab-act")
+			 $(".rackhide .module-tab").removeClass("module-tab-act")
+
+      $("#style4").attr("style", "display:block");
+      sessionStorage.setItem('FR', 'FR');
+      sessionStorage.setItem('FRHome', 'FRHome');
+
+    }
+
+		
+  } else {
+		
+    $("#message").html("");
+    $("#imgLoading").show();
+    $("#message").html("rack is runing now...");
+    TimeoUT();
+    $(".rackhide").appendTo("#main-header");
+    $(".rackhide").removeAttr("hidden");
+    $(".rackhide").addClass("rackActive");
+
+    $(".Alarmshide .module-tab").removeClass("module-tab-act")
+    $(".Dashboardshide .module-tab").removeClass("module-tab-act")
+		$(".maphide .module-tab").removeClass("module-tab-act")
+    $(".rackhide .module-tab").addClass("module-tab-act")
+	
+ 		$("#style5").attr("style", "display:block");
+    $("#style4").attr("style", "display:none");
+    $("#style3").attr("style", "display:none");
+    $("#style2").attr("style", "display:none");
+		$("#style1").attr("style", "display:none");
+
+    sessionStorage.setItem('rack', 'rack');
+    sessionStorage.setItem('rackHome', 'rackHome');
+  }
+}
+
+function map() {
+  if ($(".maphide").hasClass("mapActive")) {
+    $("#message").html("");
+    $("#main-header").find(".maphide").attr("hidden", "hidden");
+    $(".maphide").removeClass("mapActive");
+    $("#style1").attr("style", "display:none");
+
+    sessionStorage.removeItem('map');
+    sessionStorage.removeItem('mapHome');
+
+    $("#style3").attr("style", "display:none");
+    $("#style2").attr("style", "display:none");
+    $("#style4").attr("style", "display:none");
+		$("#style5").attr("style", "display:none");
+    if ($(".Alarmshide").hasClass("AlarmsActive")) {
+      $("#style2").attr("style", "display:block");
+
+      $(".Alarmshide .module-tab").addClass("module-tab-act")
+      $(".Dashboardshide .module-tab").removeClass("module-tab-act")
+      $(".maphide .module-tab").removeClass("module-tab-act")
+			 $(".FRhide .module-tab").removeClass("module-tab-act")
+			 $(".rackhide .module-tab").removeClass("module-tab-act")
+
+      sessionStorage.setItem('Alarms', 'Alarms');
+      sessionStorage.setItem('AlarmsHome', 'AlarmsHome');
+
+    } else if ($(".Dashboardshide").hasClass("DashboardsActive")) {
+      $(".Alarmshide .module-tab").removeClass("module-tab-act")
+      $(".Dashboardshide .module-tab").addClass("module-tab-act")
+      $(".maphide .module-tab").removeClass("module-tab-act")
+			 $(".FRhide .module-tab").removeClass("module-tab-act")
+			 $(".rackhide .module-tab").removeClass("module-tab-act")
+
+      $("#style3").attr("style", "display:block");
+      sessionStorage.setItem('Dashboards', 'Dashboards');
+      sessionStorage.setItem('DashboardsHome', 'DashboardsHome');
+
+    }
+		
+		
+		else if ($(".FRhide").hasClass("FRActive")) {
+      $(".Alarmshide .module-tab").removeClass("module-tab-act")
+      $(".FRhide .module-tab").addClass("module-tab-act")
+      $(".maphide .module-tab").removeClass("module-tab-act")
+      $(".rackhide .module-tab").removeClass("module-tab-act")
+			 $(".Dashboardshide .module-tab").removeClass("module-tab-act")
+
+      $("#style4").attr("style", "display:block");
+      sessionStorage.setItem('FR', 'FR');
+      sessionStorage.setItem('FRHome', 'FRHome');
+
+    }
+				
+			else if ($(".rackhide").hasClass("rackActive")) {
+      $(".Alarmshide .module-tab").removeClass("module-tab-act")
+      $(".Dashboardshide .module-tab").removeClass("module-tab-act")
+			 $(".FRhide .module-tab").removeClass("module-tab-act")
+      $(".rackhide .module-tab").addClass("module-tab-act")
+			$(".maphide .module-tab").removeClass("module-tab-act")
+
+      $("#style5").attr("style", "display:block");
+      sessionStorage.setItem('rack', 'rack');
+      sessionStorage.setItem('rackHome', 'rackHome');
+    }
+
+		
+  } else {
+    $("#message").html("");
+    $("#imgLoading").show();
+    $("#message").html("Map is runing now...");
+    TimeoUT();
+    $(".maphide").appendTo("#main-header");
+    $(".maphide").removeAttr("hidden");
+    $(".maphide").addClass("mapActive");
+
+    $(".Alarmshide .module-tab").removeClass("module-tab-act")
+    $(".Dashboardshide .module-tab").removeClass("module-tab-act")
+    $(".maphide .module-tab").addClass("module-tab-act")
+		 $(".FRhide .module-tab").removeClass("module-tab-act")
+		    $(".rackhide .module-tab").removeClass("module-tab-act")
+
+    $("#style1").attr("style", "display:block");
+    $("#style3").attr("style", "display:none");
+    $("#style2").attr("style", "display:none");
+    $("#style4").attr("style", "display:none");
+		$("#style5").attr("style", "display:none");
+
+    sessionStorage.setItem('map', 'map');
+    sessionStorage.setItem('mapHome', 'mapHome');
+  }
+}
+
+function Alarms() {
+  if ($(".Alarmshide").hasClass("AlarmsActive")) {
+    $("#message").html("");
+    $("#main-header").find(".Alarmshide").attr("hidden", "hidden");
+    $(".Alarmshide").removeClass("AlarmsActive");
+    sessionStorage.removeItem('Alarms');
+    sessionStorage.removeItem('AlarmsHome');
+
+    $("#style2").attr("style", "display:none");
+    $("#style3").attr("style", "display:none");
+    $("#style1").attr("style", "display:none");
+    $("#style4").attr("style", "display:none");
+		$("#style5").attr("style", "display:none");
+
+    if ($(".maphide").hasClass("mapActive")) {
+      $(".Alarmshide .module-tab").removeClass("module-tab-act")
+      $(".Dashboardshide .module-tab").removeClass("module-tab-act")
+			 $(".FRhide .module-tab").removeClass("module-tab-act")
+      $(".maphide .module-tab").addClass("module-tab-act")
+			    $(".rackhide .module-tab").removeClass("module-tab-act")
+
+      $("#style1").attr("style", "display:block");
+      sessionStorage.setItem('map', 'map');
+      sessionStorage.setItem('mapHome', 'mapHome');
+    } else if ($(".Dashboardshide").hasClass("DashboardsActive")) {
+      $(".Alarmshide .module-tab").removeClass("module-tab-act")
+      $(".Dashboardshide .module-tab").addClass("module-tab-act")
+      $(".maphide .module-tab").removeClass("module-tab-act")
+			 $(".FRhide .module-tab").removeClass("module-tab-act")
+			    $(".rackhide .module-tab").removeClass("module-tab-act")
+
+      $("#style3").attr("style", "display:block");
+      sessionStorage.setItem('Dashboards', 'Dashboards');
+      sessionStorage.setItem('DashboardsHome', 'DashboardsHome');
+    }
+			else if ($(".FRhide").hasClass("FRActive")) {
+      $(".Alarmshide .module-tab").removeClass("module-tab-act")
+      $(".FRhide .module-tab").addClass("module-tab-act")
+      $(".maphide .module-tab").removeClass("module-tab-act")
+			 $(".Dashboardshide .module-tab").removeClass("module-tab-act")
+				    $(".rackhide .module-tab").removeClass("module-tab-act")
+
+      $("#style4").attr("style", "display:block");
+      sessionStorage.setItem('FR', 'FR');
+      sessionStorage.setItem('FRHome', 'FRHome');
+
+    }
+				
+			else if ($(".rackhide").hasClass("rackActive")) {
+      $(".Alarmshide .module-tab").removeClass("module-tab-act")
+      $(".Dashboardshide .module-tab").removeClass("module-tab-act")
+			 $(".FRhide .module-tab").removeClass("module-tab-act")
+      $(".rackhide .module-tab").addClass("module-tab-act")
+			$(".maphide .module-tab").removeClass("module-tab-act")
+
+      $("#style5").attr("style", "display:block");
+      sessionStorage.setItem('rack', 'rack');
+      sessionStorage.setItem('rackHome', 'rackHome');
+    }
+
+  } else {
+    $("#message").html("");
+    $("#imgLoading").show();
+    $("#message").html("Alarms is runing now...");
+    TimeoUT();
+    $(".Alarmshide").appendTo("#main-header");
+    $(".Alarmshide").removeAttr("hidden");
+    $(".Alarmshide").addClass("AlarmsActive");
+
+    $(".Alarmshide .module-tab").addClass("module-tab-act")
+    $(".Dashboardshide .module-tab").removeClass("module-tab-act")
+    $(".maphide .module-tab").removeClass("module-tab-act")
+		 $(".FRhide .module-tab").removeClass("module-tab-act")
+		    $(".rackhide .module-tab").removeClass("module-tab-act")
+
+    $("#style2").attr("style", "display:block");
+    $("#style3").attr("style", "display:none");
+    $("#style1").attr("style", "display:none");
+    $("#style4").attr("style", "display:none");
+		$("#style5").attr("style", "display:none");
+
+    sessionStorage.setItem('Alarms', 'Alarms');
+    sessionStorage.setItem('AlarmsHome', 'AlarmsHome');
+  }
+}
+
+
+function Dashboards() {
+  if ($(".Dashboardshide").hasClass("DashboardsActive")) {
+    $("#message").html("");
+    $("#main-header").find(".Dashboardshide").attr("hidden", "hidden");
+    $(".Dashboardshide").removeClass("DashboardsActive");
+		
+
+    sessionStorage.removeItem('Dashboards');
+    sessionStorage.removeItem('DashboardsHome');
+    $("#style3").attr("style", "display:none");
+    $("#style2").attr("style", "display:none");
+    $("#style1").attr("style", "display:none");
+    $("#style4").attr("style", "display:none");
+		$("#style5").attr("style", "display:none");
+
+    if ($(".Alarmshide").hasClass("AlarmsActive")) {
+      $(".Alarmshide .module-tab").addClass("module-tab-act")
+      $(".Dashboardshide .module-tab").removeClass("module-tab-act")
+      $(".maphide .module-tab").removeClass("module-tab-act")
+			 $(".FRhide .module-tab").removeClass("module-tab-act")
+			    $(".rackhide .module-tab").removeClass("module-tab-act")
+
+      $("#style2").attr("style", "display:block");
+
+      sessionStorage.setItem('Alarms', 'Alarms');
+      sessionStorage.setItem('AlarmsHome', 'AlarmsHome');
+    } else if ($(".maphide").hasClass("mapActive")) {
+      $(".Alarmshide .module-tab").removeClass("module-tab-act")
+      $(".Dashboardshide .module-tab").removeClass("module-tab-act")
+      $(".maphide .module-tab").addClass("module-tab-act")
+			 $(".FRhide .module-tab").removeClass("module-tab-act")
+			    $(".rackhide .module-tab").removeClass("module-tab-act")
+
+      $("#style1").attr("style", "display:block");
+
+      sessionStorage.setItem('map', 'map');
+      sessionStorage.setItem('mapHome', 'mapHome');
+    }
+			else if ($(".FRhide").hasClass("FRActive")) {
+      $(".Alarmshide .module-tab").removeClass("module-tab-act")
+      $(".FRhide .module-tab").addClass("module-tab-act")
+      $(".maphide .module-tab").removeClass("module-tab-act")
+			 $(".Dashboardshide .module-tab").removeClass("module-tab-act")
+				    $(".rackhide .module-tab").removeClass("module-tab-act")
+
+      $("#style4").attr("style", "display:block");
+      sessionStorage.setItem('FR', 'FR');
+      sessionStorage.setItem('FRHome', 'FRHome');
+
+    }
+				
+			else if ($(".rackhide").hasClass("rackActive")) {
+      $(".Alarmshide .module-tab").removeClass("module-tab-act")
+      $(".Dashboardshide .module-tab").removeClass("module-tab-act")
+			 $(".FRhide .module-tab").removeClass("module-tab-act")
+      $(".rackhide .module-tab").addClass("module-tab-act")
+			$(".maphide .module-tab").removeClass("module-tab-act")
+
+      $("#style5").attr("style", "display:block");
+      sessionStorage.setItem('rack', 'rack');
+      sessionStorage.setItem('rackHome', 'rackHome');
+    }
+
+  } else {
+    $("#message").html("");
+    $("#imgLoading").show();
+    $("#message").html("Dashboards is runing now...");
+    TimeoUT();
+    $(".Dashboardshide").appendTo("#main-header");
+    $(".Dashboardshide").removeAttr("hidden");
+    $(".Dashboardshide").addClass("DashboardsActive");
+		
+
+    $(".Alarmshide .module-tab").removeClass("module-tab-act")
+    $(".Dashboardshide .module-tab").addClass("module-tab-act")
+    $(".maphide .module-tab").removeClass("module-tab-act")
+		$(".FRhide .module-tab").removeClass("module-tab-act")
+		 $(".rackhide .module-tab").removeClass("module-tab-act")
+
+    $("#style3").attr("style", "display:block");
+    $("#style1").attr("style", "display:none");
+    $("#style2").attr("style", "display:none");
+    $("#style4").attr("style", "display:none");
+		$("#style5").attr("style", "display:none");
+
+    sessionStorage.setItem('Dashboards', 'Dashboards');
+    sessionStorage.setItem('DashboardsHome', 'DashboardsHome');
+
+  }
+}
+
+const $menu = $('#preferences');
+const $CheckBox = $("#search-filter");
+
+$(document).mouseup(function (e) {
+  if (!$menu.is(e.target) // if the target of the click isn't the container...
+    &&
+    $menu.has(e.target).length === 0) // ... nor a descendant of the container
+  {
+
+    $menu.attr("style", "display:none");
+    $("#custom-pref").removeClass("active");
+  }
+
+  if (!$CheckBox.is(e.target) // if the target of the click isn't the container...
+    &&
+    $CheckBox.has(e.target).length === 0) // ... nor a descendant of the container
+  {
+    $CheckBox.attr("style", "display:none");
+    $("#custom-pref").removeClass("active");
+  }
+});
+
+
+function TimeoUT() {
+  setTimeout(function () {
+    $("#imgLoading").hide();
+    $("#message").html("");
+  }, 3000);
+}
+
+$(document).ready(function () {
+  $("#imgLoading").hide();
+
+  $("#checkallItems").change(function () {
+
+    var checked = $(this).is(':checked'); // Checkbox state
+
+    // Select all
+    if (checked) {
+      $('.check-i').each(function () {
+
+        $(this).prop('checked', true);
+      });
+    } else {
+      // Deselect All
+      $('.check-i').each(function () {
+        $(this).prop('checked', false);
+      });
+    }
+
+  });
+
+  // Changing state of Checkbox
+  $(".search-filter-con .check-i").change(function () {
+    // When total options equals to total selected option
+    if ($(".search-filter-con .check-i").length == $('[name="cbox[]"]:checked').length) {
+      $("#checkallItems").prop("checked", true);
+    } else {
+      $("#checkallItems").prop('checked', false);
+    }
+  });
+
+
+});
+
+function ClearCheck() {
+  $('.check-i').each(function () {
+    $(this).prop('checked', false);
+  });
+}
+
+$("#mapsCloseTabe").click(function () {
+  $(".pref-maps").removeClass("active");
+  map();
+
+});
+
+$("#alarmsCloseTabe").click(function () {
+  $(".pref-alarm").removeClass("active");
+  Alarms();
+});
+
+$("#dbCloseTabe").click(function () {
+  $(".pref-db").removeClass("active");
+  Dashboards();
+});
+
+$("#frCloseTabe").click(function () {
+  $(".pref-fr").removeClass("active");
+FR();
+});
+
+
+$("#rackCloseTabe").click(function () {
+  $(".pref-rack").removeClass("active");
+
+Rack();
+});
+
+$(document).ready(function () {
+
+  function openFullscreen(elem) {
+    if (elem.requestFullscreen) {
+      elem.requestFullscreen();
+    } else if (elem.mozRequestFullScreen) { /* Firefox */
+      elem.mozRequestFullScreen();
+    } else if (elem.webkitRequestFullscreen) { /* Chrome, Safari & Opera */
+      elem.webkitRequestFullscreen();
+    } else if (elem.msRequestFullscreen) { /* IE/Edge */
+      elem.msRequestFullscreen();
+    }
+  }
+
+  function closeFullscreen() {
+    if (document.exitFullscreen) {
+      document.exitFullscreen();
+    } else if (document.mozCancelFullScreen) {
+      document.mozCancelFullScreen();
+    } else if (document.webkitExitFullscreen) {
+      document.webkitExitFullscreen();
+    } else if (document.msExitFullscreen) {
+      document.msExitFullscreen();
+    }
+  }
+
+  $('#Mapfull-screen-btn').click(function (e) {
+    var elem = document.getElementById("container-content-map-main");
+    if ($(this).hasClass("Full")) {
+      closeFullscreen();
+      $(this).removeClass("Full");
+    } else {
+      openFullscreen(elem);
+      $(this).addClass("Full");
+    }
+  });
+
+  $('#Alarmsfull-screen-btn').click(function (e) {
+    var elem = document.getElementById("AlarmsContent");
+    if ($(this).hasClass("Full")) {
+      closeFullscreen();
+      $(this).removeClass("Full");
+    } else {
+      openFullscreen(elem);
+      $(this).addClass("Full");
+    }
+  });
+
+  $('#Dbfull-screen-btn').click(function (e) {
+    var elem = document.getElementById("dbContent");
+    if ($(this).hasClass("Full")) {
+      closeFullscreen();
+      $(this).removeClass("Full");
+    } else {
+      openFullscreen(elem);
+      $(this).addClass("Full");
+    }
+  });
+
+
+  $('#Sitefull-screen-btn').click(function (e) {
+    var elem = document.getElementById("container-content-map-sub");
+    if ($(this).hasClass("Full")) {
+      closeFullscreen();
+      $(this).removeClass("Full");
+    } else {
+      openFullscreen(elem);
+      $(this).addClass("Full");
+    }
+  });
+
+
+  $(".draggable-element").arrangeable();
+  $(".draggable-Map").arrangeable();
+  $(".draggable-bidashboards-tab").arrangeable();
+	 
+
+
+  window.document.onkeydown = function (e) {
+    if (!e) {
+      e = event;
+    }
+    if (e.keyCode == 27) {
+      lightbox_close();
+    }
+  }
+
+
+
+});
+
+$("#videoplayback2-played").click(function () {
+  var lightBoxVideo = document.getElementById("VideoId2");
+  $("#VideoId").attr("style", "display:none");
+  $("#VideoId2").attr("style", "display:block");
+  lightbox_open(lightBoxVideo);
+});
+
+
+$("#videoplayback1-played").click(function () {
+
+  var lightBoxVideo = document.getElementById("VideoId");
+  $("#VideoId2").attr("style", "display:none");
+  $("#VideoId").attr("style", "display:block");
+
+  lightbox_open(lightBoxVideo);
+});
+
+function lightbox_open(lightBoxVideo) {
+  //var lightBoxVideo = document.getElementById("VideoId");
+  window.scrollTo(0, 0);
+  document.getElementById('light').style.display = 'block';
+  document.getElementById('fade').style.display = 'block';
+  lightBoxVideo.play();
+}
+
+function lightbox_close() {
+  var lightBoxVideo = document.getElementById("VideoId");
+  document.getElementById('light').style.display = 'none';
+  document.getElementById('fade').style.display = 'none';
+  lightBoxVideo.pause();
+}
+
+
+
+function Dark() {
+  sessionStorage.removeItem('Light');
+  sessionStorage.setItem('Dark', 'Dark');
+  var linkD1 = document.getElementById("stylesId"); //Fetch the link by its ID
+  linkD1.setAttribute("href", "css/styles-dark.css");
+
+  var linkD2 = document.getElementById("checkboxId"); //Fetch the link by its ID
+  linkD2.setAttribute("href", "css/checkbox-dark.css");
+
+  var linkD3 = document.getElementById("radiobId"); //Fetch the link by its ID
+  linkD3.setAttribute("href", "css/radiob-dark.css");
+}
+
+function Light() {
+  sessionStorage.removeItem('Dark');
+  sessionStorage.setItem('Light', 'Light');
+  var link1 = document.getElementById("stylesId"); //Fetch the link by its ID
+  link1.setAttribute("href", "css/styles-light.css");
+
+  var link2 = document.getElementById("checkboxId"); //Fetch the link by its ID
+  link2.setAttribute("href", "css/checkbox-light.css");
+
+  var link3 = document.getElementById("radiobId"); //Fetch the link by its ID
+  link3.setAttribute("href", "css/radiob-light.css");
+}
+
+$(document).ready(function () {
+
+  var dark = sessionStorage.getItem('Dark');
+  var light = sessionStorage.getItem('Light');
+
+  if (dark != null) {
+    Dark();
+  } else if (light != null) {
+    Light();
+  }
+
+});
+
+
+document.onmousemove = function (evt) {
+  if (window.getSelection)
+    window.getSelection().removeAllRanges();
+  else if (document.selection)
+    document.selection.empty();
+}
+

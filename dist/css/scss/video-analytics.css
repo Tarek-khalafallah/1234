@@ -1,0 +1,274 @@
+@font-face {
+  font-family: "light";
+  src: url(../fonts/g2k-1light.ttf);
+}
+
+@font-face {
+  font-family: "reg";
+  src: url(../fonts/g2k-2reg.ttf);
+}
+
+@font-face {
+  font-family: "med";
+  src: url(../fonts/g2k-3med.ttf);
+}
+
+@media only screen and (min-width: 1024px) {
+  .camera-tab {
+    background-color: #063739;
+    width: 95%;
+    height: 40px;
+    margin: 10px auto;
+    border-radius: 5px;
+  }
+  .camera-logo {
+    width: 10%;
+    height: 40px;
+    position: relative;
+    margin-left: 10px;
+    float: left;
+    vertical-align: middle;
+  }
+  .camera-logo img {
+    width: 30px;
+    height: 30px;
+    margin-top: 5px;
+  }
+  .camera-title {
+    width: 70%;
+    height: 40px;
+    position: relative;
+    margin-left: 10px;
+    float: left;
+    text-align: left;
+    line-height: 40px;
+    color: #fff;
+    font-size: 16px;
+    font-family: "reg";
+  }
+  .camera-button {
+    width: 10%;
+    height: 40px;
+    line-height: 40px;
+    vertical-align: middle;
+    float: left;
+    text-align: center;
+  }
+  .switch {
+    position: relative;
+    display: inline-block;
+    width: 30px;
+    height: 17px;
+    text-align: center;
+    vertical-align: middle;
+  }
+  /* Hide default HTML checkbox */
+  .switch input {
+    opacity: 0;
+    width: 0;
+    height: 0;
+  }
+  /* The slider */
+  .slider {
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #c1272d;
+    -webkit-transition: .4s;
+    transition: .4s;
+  }
+  .slider:before {
+    position: absolute;
+    content: "";
+    height: 13px;
+    width: 13px;
+    left: 2px;
+    bottom: 2px;
+    background-color: white;
+    -webkit-transition: .4s;
+    transition: .4s;
+  }
+  input:checked + .slider {
+    background-color: #58e02b;
+  }
+  input:focus + .slider {
+    -webkit-box-shadow: 0 0 1px #2196F3;
+            box-shadow: 0 0 1px #2196F3;
+  }
+  input:checked + .slider:before {
+    -webkit-transform: translateX(13px);
+    transform: translateX(13px);
+  }
+  /* Rounded sliders */
+  .slider.round {
+    border-radius: 40px;
+  }
+  .slider.round:before {
+    border-radius: 50%;
+  }
+  .camera-top-container {
+    width: 100%;
+    height: 500px;
+    float: left;
+  }
+  .camera-live {
+    background-color: #0c1719;
+    width: 68%;
+    height: 500px;
+    margin-left: 5px;
+    float: left;
+    border: 1px solid #063739;
+    border-radius: 5px;
+  }
+  .camera-alarms {
+    background-color: #0c1719;
+    width: 30%;
+    height: 500px;
+    margin-right: 5px;
+    float: right;
+    border: 1px solid #063739;
+    border-radius: 5px;
+  }
+  .camera-alarms-header {
+    background-color: #142e33;
+    width: 100%;
+    height: 40px;
+    position: relative;
+    line-height: 40px;
+    border-radius: 5px 5px 0 0;
+    color: white;
+  }
+  .camera-alarms-tab {
+    background-color: #063739;
+    width: 95%;
+    height: 40px;
+    margin: 10px auto;
+    border-radius: 5px;
+  }
+  .camera-alarms-tab div {
+    line-height: 40px;
+    text-align: left;
+    margin-left: 10px;
+  }
+  .camera-alarms-header div {
+    line-height: 40px;
+    text-align: left;
+    margin-left: 10px;
+  }
+  .camera-alarms-logo {
+    width: 10%;
+    height: 40px;
+    position: relative;
+    margin-left: 10px;
+    float: left;
+    vertical-align: middle;
+  }
+  .camera-alarms-logo img {
+    width: 30px;
+    height: 30px;
+    margin-bottom: 2px;
+  }
+  .camera-alarms-title {
+    width: 70%;
+    height: 40px;
+    position: relative;
+    margin-left: 10px;
+    float: left;
+    text-align: left;
+    line-height: 40px;
+    color: #fff;
+    font-size: 16px;
+    font-family: "reg";
+  }
+  .camera-alarms-button {
+    width: 10%;
+    height: 40px;
+    line-height: 40px;
+    vertical-align: middle;
+    float: left;
+    text-align: center;
+    position: relative;
+  }
+  .camera-alarms-button svg {
+    width: 25px;
+    height: 25px;
+    line-height: 40px;
+    margin-top: 6px;
+    text-align: center;
+    fill: #fff;
+    cursor: pointer;
+    float: right;
+    margin-right: 5px;
+  }
+  .camera-alarms-button svg:hover {
+    text-align: center;
+    fill: #13bcd0;
+    cursor: pointer;
+  }
+  .alarm-details {
+    background-color: #0c1719;
+    width: 99.5%;
+    margin: 10px 5px;
+    height: 300px;
+    float: left;
+    border: 1px solid #063739;
+    border-radius: 5px;
+  }
+  .alarm-details-tab {
+    background-color: #063739;
+    width: 95%;
+    height: 50px;
+    margin: 10px auto;
+    border-radius: 5px;
+  }
+  .alarm-details-tab div {
+    line-height: 50px;
+    text-align: left;
+    margin-left: 10px;
+  }
+  .alarm-details-header div {
+    line-height: 40px;
+    text-align: left;
+    margin-left: 10px;
+  }
+  .alarm-details-title {
+    width: 70%;
+    height: 40px;
+    position: relative;
+    margin-left: 10px;
+    float: left;
+    text-align: left;
+    line-height: 40px;
+    color: #fff;
+    font-size: 16px;
+    font-family: "reg";
+    cursor: pointer;
+  }
+  .alarm-details-section1 {
+    margin: 20px auto;
+    width: 35%;
+    height: 250px;
+    float: left;
+  }
+  .alarm-details-section2 {
+    margin: 20px auto;
+    margin-top: 20px;
+    width: 2%;
+    height: 200px;
+    line-height: 350px;
+    float: left;
+    border-left: #13bcd0 1px solid;
+  }
+  .alarm-details-section3 {
+    margin: 20px auto;
+    width: 60%;
+    height: 200px;
+    float: left;
+    background-color: #063739;
+    margin-left: 10px;
+  }
+}
+/*# sourceMappingURL=video-analytics.css.map */
