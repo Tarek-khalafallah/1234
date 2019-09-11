@@ -25,7 +25,8 @@
 
 .CamItemName {
     font-size: 11px;
-    margin-left: -8px;
+    margin-left: 8px;
+    float: left;
 }
 
 .CamItemCircle {
@@ -34,10 +35,10 @@
 
 .CamItemToggle {
     margin-top: 4px;
-    margin-right: -7px;
+    margin-right: 7px;
 }
 
-.CamItemBackgroundImg {
+/*.CamItemBackgroundImg {
     width: 30px;
     height: 30px;
     margin-top: -3px;
@@ -45,7 +46,8 @@
     margin-right: -25px;
     background: url(imgs/cctv.png) no-repeat center center transparent;
     background-size: 30px auto;
-}
+}*/
+
 /* child*/
 #FrameCam {
     width: 100%;
@@ -279,4 +281,24 @@
 .bottombar .playbackBarButtons .playForwardButton.active {
     background-image: url(imgs/pause.svg);
     background-size: 17px auto;
+}
+.alarm-details-section1::-webkit-scrollbar {
+    width: 3px;
+    background-color: transparent;
+}
+.alarm-details-section1::-webkit-scrollbar-thumb {
+    background-color: #063739;
+}
+.alarm-details-section1::-webkit-scrollbar-track {
+    background-color: transparent;
+}
+.alarms-section::-webkit-scrollbar {
+    width: 3px;
+    background-color: transparent;
+}
+.alarms-section::-webkit-scrollbar-thumb {
+    background-color: #063739;
+}
+.alarms-section::-webkit-scrollbar-track {
+    background-color: transparent;
 }

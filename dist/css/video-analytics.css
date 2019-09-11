@@ -146,7 +146,22 @@
   .camera-alarms-tab {
     background-color: #063739;
     width: 95%;
-    height: 40px;
+    height: 12.5%;
+    margin: 10px auto;
+    border-radius: 5px;
+
+  }
+  .alarms-section{
+    margin: 10px auto;
+    width: 99.5%;
+    height: 100%;
+    float: left;
+    overflow-y: scroll;
+  }
+  .alarms-tab {
+    background-color: #063739;
+    width: 95%;
+    height: 7%;
     margin: 10px auto;
     border-radius: 5px;
   }
@@ -156,14 +171,16 @@
     cursor: pointer;
   }
   .camera-alarms-tab div {
-    line-height: 40px;
     text-align: left;
-    margin-left: 10px;
+    margin-left: 6px;
+    font-size: 12px;
+    width: 95%;
+   vertical-align: middle;
   }
   .camera-alarms-header div {
     line-height: 40px;
     text-align: left;
-    margin-left: 10px;
+    margin-left: 6px;
   }
   .camera-alarms-logo {
     width: 10%;
@@ -219,7 +236,7 @@
     background-color: #0c1719;
     width: 99.5%;
     margin: 10px 5px;
-    height: 300px;
+    height: 99.5%;
     float: left;
     border: 1px solid #063739;
     border-radius: 5px;
@@ -259,7 +276,9 @@
     width: 35%;
     height: 250px;
     float: left;
+    overflow-y: scroll;
   }
+ 
   .alarm-details-section2 {
     margin: 20px auto;
     margin-top: 20px;
@@ -271,11 +290,29 @@
   }
   .alarm-details-section3 {
     margin: 20px auto;
+    position: relative;
     width: 60%;
+    height: 250px;
+    float: left;
+    /*background-color: #063739;*/
+    margin-left: 10px;
+  }
+  .imagediv {
+    width: 100%;
     height: 200px;
     float: left;
     background-color: #063739;
-    margin-left: 10px;
+  }
+  .logdetails {
+    position: absolute;
+    bottom: 0%;
+    width: 100%;
+    height: 50px;
+  }
+
+  .logdetails p {
+    color: #fff;
+    text-align: left;
   }
 }
 /*# sourceMappingURL=video-analytics.css.map */

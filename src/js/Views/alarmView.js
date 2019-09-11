@@ -5,7 +5,7 @@ export const addAlarm = alarm => {
  {
      if(alarm.AlarmDefinition) {
         var alarmTitle1 = alarm.AlarmDefinition.AlarmDefinitionTitle1;
-        var alarmHtml = `<div class="camera-alarms-tab">
+        var alarmHtml = `<div class="alarms-tab">
         <div class="camera-alarms-logo"><img src="svgs/crossline/crossline.svg" alt=""></div>
         <div class="camera-title">${alarmTitle1}</div>
         <div class="camera-alarms-button">
@@ -16,7 +16,7 @@ export const addAlarm = alarm => {
         </div>
       </div>`;
 
-      elements.alarms.insertAdjacentHTML('beforeend', alarmHtml);
+      elements.alarms.insertAdjacentHTML('afterbegin', alarmHtml);
 
      }
  

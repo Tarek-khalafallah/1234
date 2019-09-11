@@ -147,7 +147,7 @@ var XPMobileSDK = new function () {
      * @param {Array} queue - Array containing all script for loading
 	 */
 	function load(queue) {
-		debugger;
+		//debugger;
 		var url = path + queue.shift();
 		var script = document.createElement('script');
 		

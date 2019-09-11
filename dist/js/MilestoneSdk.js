@@ -69,7 +69,7 @@ var Application = new function () {
             try {
                 //Cam List view
                 //var UserCams = GetAssignedCamsFromCamListModel();
-                debugger;
+                //debugger;
                 for (var j = 0; j < AllCams.length; j++) {
                     //var name = AllCams[j].Name.
                     var item = { Id: AllCams[j].Id, Name: "name", Status: false };
@@ -88,14 +88,14 @@ var Application = new function () {
     }
    
     function FillCamsListtt() {
-        debugger;
+        //debugger;
         //  milestoneSdk.js
         var allcams = Application.GetAllMilstoneCams();
         var drobdouwn = document.querySelector('#mediaplayercontrolvideo');
         var inerhtml = '';
         //addCamera view
-        var ids = GetCamsIdsFromModels();
-        var m = GetModelData();
+        //var ids = GetCamsIdsFromModels();
+        //var m = GetModelData();
 
         for (var i = 0; i < allcams.length; i++) {
             var freeCam = true;
@@ -275,7 +275,7 @@ var Application = new function () {
            // canvasContext.drawImage(image, 0, 0, 800, 600);
           
             var dataURL = canvas.toDataURL('image/png');
-            debugger;
+            //debugger;
             btnSnape.href = dataURL;
             //XPMobileSDK.getThumbnail(item.Id,
             //    function (result) {
@@ -663,7 +663,7 @@ var Application = new function () {
     };
 
     function buildNewCameraElement(item) {
-        debugger;
+        //debugger;
         var container = document.querySelector('#divCamList');
         var _Box = document.createElement('div');
         _Box.setAttribute('id', 'Cam' + item.Id);
@@ -685,12 +685,12 @@ var Application = new function () {
                         </svg>
          */
         var nameElemnt = document.createElement('div');
-        nameElemnt.setAttribute('class', 'col-sm-3 CamItemName');
+        nameElemnt.setAttribute('class', 'CamItemName');
         nameElemnt.innerText = item.Name;
         _Box.appendChild(nameElemnt);
 
         var MainCircleElemnt = document.createElement('div');
-        MainCircleElemnt.setAttribute('class', 'col-sm-1');
+        //MainCircleElemnt.setAttribute('class', 'col-sm-1');
         var ChildCircleElemnt = document.createElement('i');
         ChildCircleElemnt.setAttribute('class', 'fa fa-circle text-success CamItemCircle');
         ChildCircleElemnt.setAttribute('id', 'camStatusOptionPrimary' + item.Id);
@@ -698,7 +698,7 @@ var Application = new function () {
         _Box.appendChild(MainCircleElemnt);
 
         var CameControlElemnt = document.createElement('div');//
-        CameControlElemnt.setAttribute('class', 'col-sm-3');
+        //CameControlElemnt.setAttribute('class', 'col-sm-3');
         var ChildMainCircleElemnt = document.createElement('div');//
         ChildMainCircleElemnt.setAttribute('class', 'material-switch pull-right CamItemToggle');
         ChildMainCircleElemnt.setAttribute('id', 'toggleOptionPrimary' + item.Id);
@@ -720,7 +720,7 @@ var Application = new function () {
 
 
         var CameImgElemnt = document.createElement('div');//
-        CameImgElemnt.setAttribute('class', 'col-sm-3 CamItemBackgroundImg');
+        CameImgElemnt.setAttribute('class', 'CamItemBackgroundImg');
       // CameImgElemnt.innerHTML = "<path class=cls - 2' d='M12.14, 29.28H11.05V24.92h1.09Zm6.94 - 2.06a2.19, 2.19, 0, 0, 1 - 1.82, 1h - 4V27.1h4a1.07, 1.07, 0, 0, 0, .91 - .49l.75 - 1.13.94.56Zm3.52 - 2.43a1.44, 1.44, 0, 0, 1 - 1.92.47l - 1.38 - .83a1.26, 1.26, 0, 0, 1 - .62 - 1.09, 1.25, 1.25, 0, 0, 1, .26 - .76l.64 - .86, 3.61, 2.08Zm6.21, 1L16.05, 18.43a1.29, 1.29, 0, 0, 1 - .41 - 1.85l1.37 - 2L30.5, 22.41Zm4.05 - 3.6a2.72, 2.72, 0, 0, 1 - 2.37, 2.69l1.14 - 2.28L32.84, 22A1.5, 1.5, 0, 0, 1, 32.86, 22.19Zm - 1.62 - .62 - 13.6 - 7.84.87 - 1.24a1.54, 1.54, 0, 0, 1, 1.26 - .66, 1.57, 1.57, 0, 0, 1, .76.2l13.9, 8Zm4.61 - 2L21.07, 11.07a2.71, 2.71, 0, 0, 0 - 3.46.77l - 2.86, 4.1a2.36, 2.36, 0, 0, 0 - .43, 1.36, 2.41, 2.41, 0, 0, 0, 1.19, 2.07l3.12, 1.8 - .57.75a2.39, 2.39, 0, 0, 0 - .47, 1.42, 2.36, 2.36, 0, 0, 0, .5, 1.42L17.26, 26h - 4V24.37a.53.53, 0, 0, 0 - .55 - .54H10.5a.53.53, 0, 0, 0 - .54.54v5.45a.55.55, 0, 0, 0, .54.55h2.18a.55.55, 0, 0, 0, .55 - .55v - .54h4A3.25, 3.25, 0, 0, 0, 5, 27.82l.9 - 1.34a2.25, 2.25, 0, 0, 0, .52.07, 2.49, 2.49, 0, 0, 0, 2.13 - 1.21l.6 - 1L28.77, 27a.53.53, 0, 0, 0, .27.08.41.41, 0, 0, 0, .16, 0, .54.54, 0, 0, 0, .33 - .28l.4 - .8h.2A3.82, 3.82, 0, 0, 0, 34, 22.18a3.63, 3.63, 0, 0, 0 - .09 - .71l2 - 1a.55.55, 0, 0, 0, .3 - .47A.54.54, 0, 0, 0, 35.85, 19.53Z'></path>";
         //var CameImgPath = document.createElement('path');//
         //CameImgPath.setAttribute('class', 'cls-2 CamItemBackgroundImg');
